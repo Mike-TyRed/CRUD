@@ -1,0 +1,61 @@
+{% extends "./base.html" %}
+
+{% block title %} Estadios {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
+            <h1>Listado de stadios</h1>
+            <div class="table-responsibe">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Capacidad</th>
+                            <th>Ubicación</th>
+                            <th colspan="">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in stadiums %}
+                            <tr>
+                                <td>{{ s.stadium_name }}</td>
+                                <td>{{ s.stadium_capacity }}</td>
+                                <td>{{ s.stadium_location }}</td>
+                                <td>
+                                    <a href="/editStadium/{{ s.id }}" class="btn btn-info btn-warning">Editar</a>
+                                    <a href="/deleteStadium/{{ s.id }}" class="btn btn-info btn-danger">Eliminar</a>
+                                </td>
+                               </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h1>Gestionar estadio</h1>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registerStadium/" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="stadium_name">Nombre del estadio</label>
+                            <input type="text" name="stadium_name" id="stadium_name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="stadium_capacity">Capacidad del estadio</label>
+                            <input type="number" name="stadium_capacity" id="stadium_capacity" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="stadium_location">Ubicación del estadio</label>
+                            <input type="text" name="stadium_location" id="stadium_location" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

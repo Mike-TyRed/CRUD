@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block title %} Equipos {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> 
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"> 
+            <div class="table-responsibe">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Estadio</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in teams %}
+                            <tr>
+                                <td>{{ s.team_name }}</td>
+                                <td>{{ s.team_stadium }}</td>
+                                <td><img src="{{ s.team_logo }}" alt="Imagen del estadio" width="100px" height="100px"></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
