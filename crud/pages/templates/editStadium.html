@@ -1,0 +1,32 @@
+{% extends "./index.html" %}
+
+{% block title %} Actualizar estadios {% endblock %}
+
+{% block content %}
+
+<div class="col-md-4 offset-md-4">
+    <h1 align="center">Editar Estadio</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/updateStadium/{{stadium.id_stadium}}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_stadium">ID</label>
+                    <input type="text" name="id_stadium" id="id_stadium" value="{{stadium.id_stadium}}" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="name_stadium">Nombre</label>
+                    <input type="text" name="name_stadium" id="name_stadium" value="{{stadium.name_stadium}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="location_stadium">Ubicacion</label>
+                    <input type="text" name="location_stadium" id="location_stadium" value="{{stadium.location_stadium}}" class="form-control">
+                </div>
+                <div class="form-group py-3 d-grid gap-2">
+                    <button type="submit" class="btn btn-success ">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

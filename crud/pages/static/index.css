@@ -1,0 +1,11 @@
+th,
+td {
+  padding: 0.5rem;
+  text-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+body {
+  background: #3A506B;
+  color: white;
+}

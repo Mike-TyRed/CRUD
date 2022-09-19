@@ -1,0 +1,35 @@
+{% extends "./index.html" %}
+
+{% block title %} Actualizar {% endblock %}
+
+{% block content %}
+
+<div class="col-md-4 offset-md-4">
+    <h1 align="center">Editar jugador</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/updatePlayer/{{player.id_player}}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group py-2">
+                    <input type="text" name="id_player" id="id_player" class="form-control" placeholder="ID" minlength="1" maxlength="6" required value="{{player.id_player}}" readonly>
+                </div>
+
+                <div class="form-group py-2">
+                    <input type="text" name="name_player" id="name_player" class="form-control" placeholder="Nombre" minlength="1" maxlength="50" required value="{{player.name_player}}" required>
+                </div>
+
+                <div class="form-group py-2">
+                    <input type="text" name="age_player" id="age_player" placeholder="Edad" minlength="1" maxlength="50" required required value="{{player.age_player}}" class="form-control">
+                </div>
+
+                <div class="form-group py-2">
+                    <input type="text" name="team_player" id="team_player" placeholder="Equipo" minlength="1" maxlength="50" required value="{{player.team_player}}" required class="form-control">
+
+                <div class="form-group py-3 d-grid gap-2">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

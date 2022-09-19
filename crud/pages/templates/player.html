@@ -1,0 +1,72 @@
+{% extends "./index.html" %}
+
+{% block title %} Jugadores {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-5">
+        <h1 align="center">Agregar Jugadores</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registerPlayer/" method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %}
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="id_player" id="id_player" class="form-control" placeholder="ID" minlength="1" maxlength="6" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="name_player" id="name_player" class="form-control" placeholder="Nombre" minlength="6" maxlength="50" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="age_player" id="age_player" class="form-control" placeholder="Edad" minlength="1" maxlength="50" required >
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" name="team_player" id="team_player" class="form-control" placeholder="Equipo" minlength="1" maxlength="50" required>
+                    </div>
+
+                    <div class="form-group py-3 d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-block text-white px-lg-5">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-8 py-5">
+        <h1 align="center">Lista de jugadores</h1>
+        <div class="table-responsibe">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th>Equipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for player in players %}
+                            <tr>
+                                <td>{{player.id_player}}</td>
+                                <td>{{player.name_player}}</td>
+                                <td>{{player.age_player}}</td>
+                                <td>{{player.team_player}}</td>
+                                <td>
+                                    <a href="/editPlayer/{{player.id_player}}" class="btn btn-warning btnEdit">Editar</a>
+                                    <a href="/deletePlayer/{{player.id_player}}" class="btn btn-danger btnDelete">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

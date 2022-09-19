@@ -1,0 +1,67 @@
+{% extends "./index.html" %}
+
+{% block title %} Estadios {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-5">
+        <h1 align="center">Agregar Estadio</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registerStadium/" method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %}
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="id_stadium" id="id_stadium" class="form-control" placeholder="ID" minlength="1" maxlength="50" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="name_stadium" id="name_stadium" class="form-control" placeholder="Nombre" minlength="6" maxlength="50" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <input type="text" name="location_stadium" id="location_stadium" placeholder="Ubicación" minlength="6" maxlength="50" required class="form-control">
+                    </div>
+    
+                    <div class="form-group py-3 d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-block text-white px-lg-5">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 py-5">
+        <h1 align="center">Lista de estadios</h1>
+        <div class="table-responsibe">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Locación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stadium in stadiums %}
+                            <tr>
+                                <td>{{stadium.id_stadium}}</td>
+                                <td>{{stadium.name_stadium}}</td>
+                                <td>{{stadium.location_stadium}}</td>
+                                <td>
+                                    <a href="/editStadium/{{stadium.id_stadium}}" class="btn btn-warning btnEdit">Editar</a>
+                                    <a href="/deleteStadium/{{stadium.id_stadium}}" class="btn btn-danger btnDelete">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
