@@ -3,6 +3,9 @@ from .models import Player, Team, Stadium
 
 # Create your views here.
 
+def main(request):
+    return render(request, 'main.html', {})
+
 def listPlayer(request):
     players = Player.objects.all()
     return render(request, 'player.html', {'players': players})
